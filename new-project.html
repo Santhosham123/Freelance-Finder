@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post New Project - SB Works</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #de6e4b;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .form-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-row input {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #de6e4b;
+      color: white;
+      border: 2px solid #de6e4b;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c85a38;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">SB Works</div>
+    <div class="nav-links">
+      <a href="dashboard1.html">Dashboard</a>
+      <a href="new-project.html">New Project</a>
+      <a href="applications1.html">Applications</a>
+      <a href="index.html">Logout</a>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h2>Post new project</h2>
+    <input type="text" id="title" placeholder="Project title" />
+    <textarea id="description" rows="5" placeholder="Description"></textarea>
+    
+    <div class="form-row">
+      <input type="text" id="budget" placeholder="Budget (in ₹)" />
+      <input type="text" id="skills" placeholder="Required skills (separate each with ,)" />
+    </div>
+
+    <button onclick="submitProject()">Submit</button>
+  </div>
+
+  <script>
+    function submitProject() {
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const budget = document.getElementById("budget").value.trim();
+      const skills = document.getElementById("skills").value.trim().split(',').map(s => s.trim());
+      const date = new Date().toLocaleString();
+
+      if (!title || !description || !budget || skills.length === 0) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      const newProject = { title, description, budget, skills, date };
+      const existingProjects = JSON.parse(localStorage.getItem("projects") || "[]");
+
+      existingProjects.push(newProject);
+      localStorage.setItem("projects", JSON.stringify(existingProjects));
+
+      alert("Project submitted successfully!");
+      window.location.href = "dashboard1.html";
+    }
+  </script>
+</body>
+</html>

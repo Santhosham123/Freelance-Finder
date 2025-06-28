@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SB Works - Project Chat</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+    }
+
+    header {
+      background-color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      color: #d60000;
+      margin: 0;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 60px auto 30px;
+      padding: 0 20px;
+    }
+
+    .left-panel {
+      width: 65%;
+    }
+
+    .right-panel {
+      width: 30%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      height: fit-content;
+    }
+
+    .title {
+      color: #2c7a7b;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .description {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .skills {
+      margin-top: 20px;
+    }
+
+    .skills-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #fce8e6;
+      color: #c62828;
+      border: 1px solid #f4cccc;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 4px;
+    }
+
+    .budget {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .submit-box {
+      margin-top: 30px;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .submit-box h3 {
+      margin: 0 0 10px;
+    }
+
+    .chat-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .chat-box {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 20px;
+      max-width: 70%;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .message.client {
+      background-color: #ff7043;
+      color: white;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .message.user {
+      background-color: #42a5f5;
+      color: white;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+      margin-top: 4px;
+      display: block;
+      opacity: 0.7;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 60px auto 30px; /* ⬅️ Increased top margin */
+      padding: 0 20px;
+    }
+
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .input-area button {
+      padding: 8px 16px;
+      background-color: #d60000;
+      color: white;
+      border: none;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SB Works</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="all-projects.html">All Projects</a>
+      <a href="my-projects.html">My Projects</a>
+      <a href="applications.html">Applications</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+      <div class="description">
+        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'.
+      </div>
+
+      <div class="skills">
+        <div class="skills-title">Required skills</div>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Javascript</span>
+        <span class="skill-tag">Django</span>
+        <span class="skill-tag">HTML</span>
+      </div>
+
+      <div class="budget">Budget<br>₹ 4200</div>
+
+      <div class="submit-box">
+        <h3>Submit the project</h3>
+        <p>Project completed</p>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <div class="chat-title">Chat with the client</div>
+      <div class="chat-box" id="chatBox">
+        <div class="message client">Hello <span class="timestamp">12-04 - 16:00:38</span></div>
+        <div class="message user">how are you <span class="timestamp">12-04 - 16:01:01</span></div>
+        <div class="message client">I'm doing great<span class="timestamp">12-04 - 16:02:51</span></div>
+        <div class="message user">Ohh really??<span class="timestamp">12-04 - 16:03:07</span></div>
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="chatInput" placeholder="Enter something..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('chatBox');
+      const now = new Date();
+      const timestamp = now.toLocaleDateString('en-GB') + ' - ' + now.toLocaleTimeString('en-GB');
+
+      const msg = document.createElement('div');
+      msg.className = 'message user';
+      msg.innerHTML = `${text} <span class="timestamp">${timestamp}</span>`;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>

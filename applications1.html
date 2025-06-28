@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SB Works - My Applications</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+    }
+
+    header {
+      background-color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      color: #d60000;
+      margin: 0;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .main-box {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+    }
+
+    .application-box {
+      background: #eaf4f8;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+      margin-bottom: 24px;
+      border-radius: 8px;
+      border: 1px solid #cbdde5;
+    }
+
+    .job-details, .proposal-details {
+      width: 48%;
+    }
+
+    .job-title {
+      font-size: 1.2rem;
+      color: #2c7a7b;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .proposal-heading {
+      font-size: 1.1rem;
+      color: #1a3e63;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .job-description, .proposal-text {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .skills {
+      margin: 10px 0;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #fce8e6;
+      color: #c62828;
+      border: 1px solid #f4cccc;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 3px;
+    }
+
+    .budget, .proposal-budget, .status {
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .status {
+      color: #2e7d32;
+    }
+
+    @media (max-width: 768px) {
+      .job-details, .proposal-details {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SB Works</h1>
+    <nav>
+      <a href="dashboard1.html">Dashboard</a>
+      <a href="new-project.html">New Project</a>
+      <a href="applications1.html">Applications</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="main-box">
+      <h2>My Applications</h2>
+      <div id="applicationsContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const applications = [
+      {
+        job: {
+          title: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+          skills: ["Python", "Javascript", "Django", "HTML"],
+          budget: 4500
+        },
+        proposal: {
+          text: "I hope this proposal finds you well. We appreciate the opportunity to bid on the development of your e-commerce web application. Our team of experienced and skilled web developers is well-versed in the MERN (MongoDB, Express.js, React.js, Node.js) stack and has a proven track record of delivering high-quality web applications.",
+          skills: ["Python", "JavaScript", "React Js", "Node Js"],
+          budget: 4200,
+          status: "Accepted"
+        }
+      },
+      {
+        job: {
+          title: "I need a web application for my e commerce store.",
+          description: "I am seeking an experienced and skilled web developer to create a robust and user-friendly e-commerce web application.",
+          skills: ["React.js", "MongoDB", "Node.js", "Express.js"],
+          budget: 8000
+        },
+        proposal: {
+          text: "We appreciate the opportunity to bid. We have delivered multiple MERN stack applications with strong UI/UX focus and scalable backend design.",
+          skills: ["JavaScript", "MongoDB", "Express", "React", "Node"],
+          budget: 7900,
+          status: "Pending"
+        }
+      }
+    ];
+
+    function renderApplications() {
+      const container = document.getElementById("applicationsContainer");
+      container.innerHTML = '';
+
+      applications.forEach(app => {
+        const div = document.createElement("div");
+        div.className = "application-box";
+
+        div.innerHTML = `
+          <div class="job-details">
+            <div class="job-title">${app.job.title}</div>
+            <div class="job-description">${app.job.description}</div>
+            <div class="skills">
+              ${app.job.skills.map(skill => `<span class="skill-tag">${skill.trim()}</span>`).join('')}
+            </div>
+            <div class="budget">Budget - ₹ ${app.job.budget}</div>
+          </div>
+
+          <div class="proposal-details">
+            <div class="proposal-heading">Proposal</div>
+            <div class="proposal-text">${app.proposal.text}</div>
+            <div class="skills">
+              ${app.proposal.skills.map(skill => `<span class="skill-tag">${skill.trim()}</span>`).join('')}
+            </div>
+            <div class="proposal-budget">Proposed Budget - ₹ ${app.proposal.budget}</div>
+            <div class="status">Status: ${app.proposal.status}</div>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    renderApplications();
+  </script>
+
+</body>
+</html>

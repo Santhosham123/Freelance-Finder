@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SB Works - My Projects</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f4f8;
+    }
+
+    header {
+      background-color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    header h1 {
+      color: #d60000;
+      margin: 0;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .dropdown {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .dropdown label {
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      margin-bottom: 24px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-title {
+      color: #2c7a7b;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .project-budget {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    .project-description {
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .project-status {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .project-date {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      header, .dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 10px 0 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SB Works</h1>
+    <nav>
+      <a href="dashboard1.html">Dashboard</a>
+      <a href="new-project.html">New Project</a>
+      <a href="applications1.html">Applications</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="dropdown">
+      <label for="statusFilter">Choose project status:</label>
+      <select id="statusFilter" onchange="filterProjects()">
+        <option value="All">All</option>
+        <option value="Completed">Completed</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </div>
+
+    <h2>My Projects</h2>
+    <div id="projectsContainer"></div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        title: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+        budget: 4200,
+        description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        status: "Completed",
+        date: "Mon Dec 04 2023 20:41:23 GMT+0530 (India Standard Time)"
+      },
+      {
+        title: "I need a web application for my e commerce store.",
+        budget: 8000,
+        description: "Seeking skilled developer for a MERN-stack e-commerce application. Must have high-quality web app experience.",
+        status: "Completed",
+        date: "Tue Jan 09 2024 14:10:11 GMT+0530 (India Standard Time)"
+      },
+      {
+        title: "Build mobile app for online education",
+        budget: 12000,
+        description: "Develop a hybrid mobile app using Flutter for an online course platform.",
+        status: "In Progress",
+        date: "Wed Feb 14 2024 10:30:00 GMT+0530 (India Standard Time)"
+      }
+    ];
+
+    function renderProjects(filtered = projects) {
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = '';
+
+      if (filtered.length === 0) {
+        container.innerHTML = "<p>No projects found.</p>";
+        return;
+      }
+
+      filtered.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.innerHTML = `
+          <div class="project-title">${project.title}</div>
+          <div class="project-budget">Budget - ₹ ${project.budget}</div>
+          <div class="project-description">${project.description}</div>
+          <div class="project-status">Status - ${project.status}</div>
+          <div class="project-date">${project.date}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterProjects() {
+      const selectedStatus = document.getElementById('statusFilter').value;
+      if (selectedStatus === "All") {
+        renderProjects();
+      } else {
+        const filtered = projects.filter(p => p.status === selectedStatus);
+        renderProjects(filtered);
+      }
+    }
+
+    renderProjects(); // Initial render
+  </script>
+
+</body>
+</html>
